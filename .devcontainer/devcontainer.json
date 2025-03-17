@@ -2,5 +2,12 @@
     "name": "Java",
     "image": "registry.gitlab.com/mu-bd-ce/devcontainers/java:latest",
     // Command to execute after the container starts. This command resolves Maven dependencies for the project.
-    //"postStartCommand": "mvn dependency:resolve"
+    "postStartCommand": "mvn dependency:resolve",
+    // Forward the container port 8080 to the same port on the host machine
+    "portsAttributes": {
+        "8080": {
+            "label": "Server Port"
+        }
+    },
+    "forwardPorts": [8080]
 }
