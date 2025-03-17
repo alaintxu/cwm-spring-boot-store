@@ -6,7 +6,7 @@
     // Forward the container port 8080 to the same port on the host machine
     "portsAttributes": {
         "8080": {
-            "label": "Server Port"
+            "label": "Tomcat Port"
         }
     },
     "forwardPorts": [8080]
