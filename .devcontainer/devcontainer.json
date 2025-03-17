@@ -1,0 +1,6 @@
+{
+    "name": "Java",
+    "image": "registry.gitlab.com/mu-bd-ce/devcontainers/java:latest",
+    // Command to execute after the container starts. This command resolves Maven dependencies for the project.
+    //"postStartCommand": "mvn dependency:resolve"
+}
