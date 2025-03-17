@@ -1,14 +1,23 @@
 {
     "name": "Java",
-    "image": "registry.gitlab.com/mu-bd-ce/devcontainers/java:latest",
+    //"image": "registry.gitlab.com/mu-bd-ce/devcontainers/java:latest",
     "customizations": {
         "vscode": {
             "extensions": [
                 "redhat.vscode-xml",
-                "vmware.vscode-boot-dev-pack"
+                "vmware.vscode-boot-dev-pack",
+                "cweijan.vscode-mysql-client2"
             ]
         }
     },
+    //"features": {
+    //    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    //},
+    "dockerComposeFile": [
+        "compose.yml"
+    ],
+    "service": "dev",
+    "workspaceFolder": "/workspaces/workspace",
     // Command to execute after the container starts. This command resolves Maven dependencies for the project.
     "postStartCommand": "mvn dependency:resolve",
     // Forward the container port 8080 to the same port on the host machine
