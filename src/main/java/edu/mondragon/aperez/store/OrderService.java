@@ -1,5 +1,6 @@
 package edu.mondragon.aperez.store;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,7 +9,7 @@ public class OrderService {
     private PaymentService paymentService;
 
     // If there are multiple constructors, we need the @Autowired annotation
-    public OrderService(PaymentService paymentService) {
+    public OrderService(@Qualifier("paypal") PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
