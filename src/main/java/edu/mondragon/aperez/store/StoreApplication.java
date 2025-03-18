@@ -11,8 +11,9 @@ public class StoreApplication {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		OrderService orderService = context.getBean(OrderService.class);
 		orderService.placeOrder();
-		NotificationManager notificationManager = context.getBean(NotificationManager.class);
-		notificationManager.sendNotification("Nire mezua");
+		
+		OrderService orderService2 = context.getBean(OrderService.class);
+		orderService2.placeOrder();
 
 		HeavyResource heavyResource = context.getBean(HeavyResource.class);
 		System.out.println("HeavyResource bean retrieved");
