@@ -1,11 +1,16 @@
 package edu.mondragon.aperez.store;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class OrderService {
+
     private PaymentService paymentService;
 
-    // public OrderService(PaymentService paymentService) {
-    //     this.setPaymentService(paymentService);
-    // }
+    // If there are multiple constructors, we need the @Autowired annotation
+    public OrderService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
 
     public void placeOrder() {
         paymentService.processPayment(100);
