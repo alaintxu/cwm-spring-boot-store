@@ -8,10 +8,11 @@ public class StoreApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(StoreApplication.class, args);
-		OrderService orderService = new OrderService(new StripePaymentService());
+		OrderService orderService = new OrderService();
+		orderService.setPaymentService(new StripePaymentService());
 		orderService.placeOrder();
-		OrderService orderService2 = new OrderService(new PayPalPaymentService());
-		orderService2.placeOrder();
+		orderService.setPaymentService(new PayPalPaymentService());
+		orderService.placeOrder();
 	}
 
 }
