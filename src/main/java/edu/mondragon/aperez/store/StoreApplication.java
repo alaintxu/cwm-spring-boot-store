@@ -11,6 +11,8 @@ public class StoreApplication {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		OrderService orderService = context.getBean(OrderService.class);
 		orderService.placeOrder();
+		NotificationManager notificationManager = context.getBean(NotificationManager.class);
+		notificationManager.sendNotification("Nire mezua");
 	}
 
 }
