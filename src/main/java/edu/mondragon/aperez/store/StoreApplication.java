@@ -13,6 +13,9 @@ public class StoreApplication {
 		orderService.placeOrder();
 		NotificationManager notificationManager = context.getBean(NotificationManager.class);
 		notificationManager.sendNotification("Nire mezua");
+
+		HeavyResource heavyResource = context.getBean(HeavyResource.class);
+		System.out.println("HeavyResource bean retrieved");
 	}
 
 }
