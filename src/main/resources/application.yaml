@@ -10,3 +10,6 @@ stripe:
   timeout: 5000
   enabled: true
   currencies: USD,EUR,GBP
+mail:
+  host: https://smtp.gmail.com
+  port: 587

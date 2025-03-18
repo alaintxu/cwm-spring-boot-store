@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 public class SMSNotificationService implements NotificationService{
 
     @Override
-    public void sendNotification(String message) {
-        System.out.println("SMS");
+    public void sendNotification(User user, String message) {
+        System.out.println("SMS to: " + user.getPhone());
         System.out.println("Message: " + message);
     }
     
