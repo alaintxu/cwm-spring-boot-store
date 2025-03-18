@@ -1,16 +1,16 @@
 package edu.mondragon.aperez.store;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+// import org.springframework.stereotype.Service;
 
-@Service
+// @Service
 public class OrderService {
 
     private PaymentService paymentService;
 
     // If there are multiple constructors, we need the @Autowired annotation
-    public OrderService(@Qualifier("stripe") PaymentService paymentService) {
+    public OrderService(PaymentService paymentService) {
         this.paymentService = paymentService;
+        System.out.println("OrderService created");
     }
 
     public void placeOrder() {

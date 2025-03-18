@@ -3,6 +3,8 @@ spring:
     name: store
 server:
   port: 8080
+payment:
+  gateway: stripe
 stripe:
   apiUrl: https://api.stripe.com
   timeout: 5000
