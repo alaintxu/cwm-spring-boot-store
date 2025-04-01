@@ -1,8 +1,6 @@
 package edu.mondragon.aperez.store;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import edu.mondragon.aperez.store.entities.Address;
 import edu.mondragon.aperez.store.entities.User;
 
 
@@ -17,14 +15,8 @@ public class StoreApplication {
 			.email("john.doe@froga.eus")
 			.build();
 		
-		Address address = Address.builder()
-			.street("Goiru 2")
-			.city("Arrasate")
-			.zip("20500")
-			.state("Gipuzkoa")
-			.build();
-
-		user.addAddress(address);
+		user.addTag("tag1");
+		
 		System.out.println(user);
 	}
 
