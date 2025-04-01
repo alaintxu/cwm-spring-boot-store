@@ -6,13 +6,20 @@
             "extensions": [
                 "redhat.vscode-xml",
                 "vmware.vscode-boot-dev-pack",
-                "cweijan.vscode-mysql-client2"
+                "cweijan.vscode-mysql-client2",
+                "jebbs.plantuml"
             ]
         }
     },
-    //"features": {
+    "features": {
+        "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			// sqlite3 as we want to use SQLite databases.
+			// graphviz is used to generate UML diagrams using PlantUML.
+            "packages": "graphviz mysql-client"
+        }
+
     //    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-    //},
+    },
     "dockerComposeFile": [
         "compose.yml"
     ],

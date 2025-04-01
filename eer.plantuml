@@ -1,0 +1,25 @@
+@startuml EER
+
+entity "Address"    as address {}
+entity "User"       as user {}
+entity "Profile"    as profile {}
+entity "Tag"        as tag {}
+entity "Product"    as product {}
+entity "Category"   as category {}
+
+' N..1
+address }o--|| user     
+
+' N..N
+tag }o..o{ user         
+
+' 1..1
+user ||--|| profile     
+
+' N..N
+user }o--o{ product     
+
+' N..1
+product }|--|| category 
+
+@enduml

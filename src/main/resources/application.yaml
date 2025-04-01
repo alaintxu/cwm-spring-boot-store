@@ -1,6 +1,10 @@
 spring:
   application:
     name: store
+  datasource:
+    url: jdbc:mysql://db:3306/codewithmosh-store?createDatabaseIfNotExist=true
+    username: mosh
+    password: password
 server:
   port: 8080
 payment:
