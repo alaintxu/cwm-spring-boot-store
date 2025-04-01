@@ -1,5 +1,6 @@
 package edu.mondragon.aperez.store.entities;
 
+import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,24 +14,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "profiles")
 @Getter
 @Setter
 @AllArgsConstructor
-@Builder
 @NoArgsConstructor
-public class User {
+@Builder
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "bio")
+    private String bio;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "date_of_birth")
+    private Date dateOfBirth;
+
+    @Column(name = "loyalty_points")
+    private Integer loyaltyPoints;
+    
 }
