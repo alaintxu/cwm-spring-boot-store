@@ -1,9 +1,29 @@
 @startuml EER
 
-entity "Address"    as address {}
-entity "User"       as user {}
-entity "Profile"    as profile {}
-entity "Tag"        as tag {}
+entity "Address"    as address {
+  id: bigint,
+  street: varchar,
+  city: varchar,
+  zip: varchar,
+  user_id: bigint
+}
+entity "User"       as user {
+    id : bigint
+    name: varchar
+    email: varchar
+    password: varchar
+}
+entity "Profile"    as profile {
+    id : bigint
+    bio: TEXT
+    phone_number: varchar
+    date_of_birth: date
+    loyalty_points: number
+}
+entity "Tag"        as tag {
+    id : int
+    name: varchar
+}
 entity "Product"    as product {}
 entity "Category"   as category {}
 
