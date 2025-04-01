@@ -82,6 +82,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>11.5.0</version>
+				<configuration>
+					<url>jdbc:mysql://db:3306/codewithmosh-store?createDatabaseIfNotExist=true</url>
+					<user>mosh</user>
+					<password>password</password>
+					<cleanDisabled>false</cleanDisabled>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
