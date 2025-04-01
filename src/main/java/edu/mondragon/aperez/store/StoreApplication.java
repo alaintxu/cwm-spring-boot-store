@@ -1,6 +1,7 @@
 package edu.mondragon.aperez.store;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import edu.mondragon.aperez.store.entities.Profile;
 import edu.mondragon.aperez.store.entities.User;
 
 
@@ -14,8 +15,17 @@ public class StoreApplication {
 			.password("pasahitza")
 			.email("john.doe@froga.eus")
 			.build();
-		
-		user.addTag("tag1");
+
+		Profile profile = Profile.builder()
+			.bio("This is a bio")
+			.phoneNumber("123456789")
+			.dateOfBirth(new java.util.Date())
+			.loyaltyPoints(100)
+			.user(user)
+			.build();
+
+		user.setProfile(profile);
+		profile.setUser(user);
 		
 		System.out.println(user);
 	}
