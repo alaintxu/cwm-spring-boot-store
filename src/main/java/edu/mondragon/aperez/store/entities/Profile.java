@@ -37,7 +37,7 @@ public class Profile {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "date_of_birth", columnDefinition = "DATE")
     private Date dateOfBirth;
 
     @Column(name = "loyalty_points")
