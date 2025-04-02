@@ -6,6 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 // import edu.mondragon.aperez.store.entities.User;
 //import edu.mondragon.aperez.store.repositories.AddressRepository;
 // import edu.mondragon.aperez.store.repositories.UserRepository;
+import edu.mondragon.aperez.store.services.UserService;
 
 
 @SpringBootApplication
@@ -31,6 +32,9 @@ public class StoreApplication {
 		// });
 
 		// userRepository.deleteById(1L);
+
+		UserService userService = context.getBean(UserService.class);
+		userService.showEntityStates();
 	}
 
 }
