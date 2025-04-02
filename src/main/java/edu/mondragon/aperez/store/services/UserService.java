@@ -1,9 +1,9 @@
 package edu.mondragon.aperez.store.services;
 
 import org.springframework.stereotype.Service;
-import edu.mondragon.aperez.store.entities.Profile;
+import edu.mondragon.aperez.store.entities.Address;
 import edu.mondragon.aperez.store.entities.User;
-import edu.mondragon.aperez.store.repositories.ProfileRepository;
+import edu.mondragon.aperez.store.repositories.AddressRepository;
 import edu.mondragon.aperez.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 public class UserService {
     private final UserRepository userRepository;
     private final EntityManager entityManager;
-    private final ProfileRepository profileRepository;
+    private final AddressRepository addressRepository;
 
     @Transactional
     public void showEntityStates() {
@@ -35,8 +35,9 @@ public class UserService {
 
     @Transactional
     public void showRelatedEntities() {
-        Profile profile = profileRepository.findById(1L).orElseThrow();
-        System.out.println(profile.getBio());
-        System.out.println(profile.getUser().getName());
+        Address address = addressRepository.findById(1L).orElseThrow();
+        System.out.println(address.getCity());
+        System.out.println(address.getUser().getName());
+        
     }
 }
