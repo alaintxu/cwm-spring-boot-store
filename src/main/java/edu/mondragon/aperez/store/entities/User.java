@@ -79,7 +79,9 @@ public class User {
         tag.getUsers().remove(this);
     }
 
-    @OneToOne(mappedBy = "user")
+    // Eager by default, when user is loaded, profile is also loaded.
+    // Lazy cannot be used as it is not the owner of the relationship
+    @OneToOne(mappedBy = "user")  
     private Profile profile;
 
     @ManyToMany
