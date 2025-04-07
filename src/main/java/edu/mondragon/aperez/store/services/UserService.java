@@ -40,4 +40,21 @@ public class UserService {
         System.out.println(address.getUser().getName());
         
     }
+
+    public void persistRelated() {
+        User user = User.builder()
+            .name("John Doe")
+            .email("jdoe@adibidea.eus")
+            .password("pasahitza")
+            .build();
+        Address address = Address.builder()
+            .city("Arrasate")
+            .street("Goiru 2")
+            .zip("20500")
+            .user(user)
+            .build();
+        user.addAddress(address);
+        userRepository.save(user);
+
+    }
 }
