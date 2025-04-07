@@ -1,8 +1,6 @@
 package edu.mondragon.aperez.store.services;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import org.springframework.stereotype.Service;
 import edu.mondragon.aperez.store.entities.Category;
 import edu.mondragon.aperez.store.entities.Product;
