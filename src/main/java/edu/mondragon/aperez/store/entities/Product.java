@@ -1,6 +1,7 @@
 package edu.mondragon.aperez.store.entities;
 
 import java.math.BigDecimal;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Product {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")  // This is the owner of the relationship, JoinColumn is used to specify the foreign key column in the Product table
     private Category category;
 

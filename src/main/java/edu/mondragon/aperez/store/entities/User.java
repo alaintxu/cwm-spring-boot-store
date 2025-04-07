@@ -96,4 +96,8 @@ public class User {
     @Builder.Default
     private Set<Product> wishlist = new HashSet<>();
 
+    public void addProductToWishlist(Product product) {
+        wishlist.add(product);
+    }
+
 }
