@@ -1,5 +1,6 @@
 package edu.mondragon.aperez.store.repositories;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -50,6 +51,13 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     // Find products whose price are in a given range and sort by name
     //List<Product> findByPriceBetweenOrderByName(BigDecimal min, BigDecimal max);
     // Simplify name using SQL or JPQL language
-    @Query("select p from Product p where p.price between :min and :max order by p.name")
+    @Query("select p from Product p join p.category where p.price between :min and :max order by p.name")
     List<Product> findProducts(@Param("min") BigDecimal min,@Param("max") BigDecimal max);
+
+    @Query("select count(*) from Product p where p.price between :min and :max")
+    long countProducts(@Param("min") BigDecimal min,@Param("max") BigDecimal max);
+
+    @Modifying  // tell hibernate that DB will be modified
+    @Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
+    void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
 }

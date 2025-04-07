@@ -15,7 +15,8 @@ public class StoreApplication {
 		//productService.stepOne();
 		//productService.stepTwo();
 		//productService.stepThree();
-		productService.stepFour();
+		//productService.stepFour();
+		productService.updateProductPrices();
 	}
 
 }

@@ -56,4 +56,10 @@ public class ProductService {
         // Wishlist table (db) foreign keys need cascade on delete
         productRepository.deleteById(1L);
     }
+
+    @Transactional
+    public void updateProductPrices() {
+        // Method needs @Transactional as it is an update operation
+        productRepository.updatePriceByCategory(BigDecimal.valueOf(99.99), (byte)1);
+    }
 }
