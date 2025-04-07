@@ -50,6 +50,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     // Find products whose price are in a given range and sort by name
     //List<Product> findByPriceBetweenOrderByName(BigDecimal min, BigDecimal max);
     // Simplify name using SQL or JPQL language
-    @Query(value = "select * from products p where p.price between :min and :max order by p.name", nativeQuery = true)
+    @Query("select p from Product p where p.price between :min and :max order by p.name")
     List<Product> findProducts(@Param("min") BigDecimal min,@Param("max") BigDecimal max);
 }
