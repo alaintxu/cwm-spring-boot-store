@@ -36,6 +36,7 @@ public class StoreApplication {
 		UserService userService = context.getBean(UserService.class);
 		//userService.showRelatedEntities();
 		userService.persistRelated();
+		userService.deleteRelated();
 	}
 
 }

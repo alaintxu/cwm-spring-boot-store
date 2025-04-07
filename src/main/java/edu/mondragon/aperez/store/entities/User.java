@@ -46,7 +46,11 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) // cascade persist to persist the address when the user is persisted
+    @OneToMany(
+        mappedBy = "user", 
+        cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, // cascade persist to persist the address when the user is persisted
+        orphanRemoval = true // remove the address when the user is removed
+    )
     @Builder.Default  // tell the builder to include this field
     private List<Address> addresses = new ArrayList<>();
 
