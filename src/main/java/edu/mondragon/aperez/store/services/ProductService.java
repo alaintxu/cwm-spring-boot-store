@@ -62,4 +62,10 @@ public class ProductService {
         // Method needs @Transactional as it is an update operation
         productRepository.updatePriceByCategory(BigDecimal.valueOf(99.99), (byte)1);
     }
+
+    public void fetchProducts() {
+        Category category = categoryRepository.findById((byte) 1).orElseThrow();
+        productRepository.findByCategory(category)
+                .forEach(System.out::println);
+    }
 }

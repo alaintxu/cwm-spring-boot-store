@@ -8,7 +8,10 @@
                 "vmware.vscode-boot-dev-pack",
                 "cweijan.vscode-mysql-client2",
                 "jebbs.plantuml"
-            ]
+            ],
+            "settings": {
+                "workbench.colorTheme": "Default Dark+"
+            }
         }
     },
     "features": {

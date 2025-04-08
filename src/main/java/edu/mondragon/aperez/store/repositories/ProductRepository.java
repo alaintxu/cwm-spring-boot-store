@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+//import edu.mondragon.aperez.store.dtos.ProductSummary;
+import edu.mondragon.aperez.store.dtos.ProductSummaryDTO;
+import edu.mondragon.aperez.store.entities.Category;
 import edu.mondragon.aperez.store.entities.Product;
 import java.math.BigDecimal;
 import java.util.List;
@@ -60,4 +63,15 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Modifying  // tell hibernate that DB will be modified
     @Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
     void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
+
+    // Projections (just get small part of the entity)
+    //List<ProductSummary> findByCategory(Category category);
+    //List<ProductSummaryDTO> findByCategory(Category category);
+    //@Query("select p.id, p.name from Product p where p.category = :category")
+    //List<ProductSummary> findByCategory(@Param("category") Category category);
+
+
+    @Query("select new edu.mondragon.aperez.store.dtos.ProductSummaryDTO(p.id, p.name) from Product p where p.category = :category")
+    List<ProductSummaryDTO> findByCategory(@Param("category") Category category);
+
 }
