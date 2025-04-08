@@ -47,7 +47,7 @@ public class User {
     @OneToMany(
         mappedBy = "user", 
         cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, // cascade persist to persist the address when the user is persisted
-        orphanRemoval = true // remove the address when the user is removed
+        orphanRemoval = true // remove the address when the user is removed,
     )
     @Builder.Default  // tell the builder to include this field
     private List<Address> addresses = new ArrayList<>();
@@ -81,11 +81,6 @@ public class User {
         tags.remove(tag);
         tag.getUsers().remove(this);
     }
-
-    // Eager by default, when user is loaded, profile is also loaded.
-    // Lazy cannot be used as it is not the owner of the relationship
-    @OneToOne(mappedBy = "user")  
-    private Profile profile;
 
     @ManyToMany
     @JoinTable(name = "wishlist",
