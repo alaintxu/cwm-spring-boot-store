@@ -21,7 +21,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "users")
@@ -30,7 +29,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@ToString(exclude = "password")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,6 +96,15 @@ public class User {
 
     public void addProductToWishlist(Product product) {
         wishlist.add(product);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ')';
     }
 
 }
