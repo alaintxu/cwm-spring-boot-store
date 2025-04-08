@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import edu.mondragon.aperez.store.dtos.UserSummary;
 import edu.mondragon.aperez.store.entities.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
@@ -15,4 +17,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @EntityGraph(attributePaths = {"addresses"})
     @Query("select u from User u")
     List<User> findAllWithAddresses();
+
+    @Query("select u.id as id, u.email as email from User u where u.profile.loyaltyPoints > :points order by u.email")
+    List<UserSummary> findLoyalUserSummaries(@Param("points") int points);
 }
