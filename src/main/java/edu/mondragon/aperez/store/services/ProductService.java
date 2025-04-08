@@ -1,6 +1,8 @@
 package edu.mondragon.aperez.store.services;
 
 import java.math.BigDecimal;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import edu.mondragon.aperez.store.entities.Category;
 import edu.mondragon.aperez.store.entities.Product;
@@ -65,7 +67,16 @@ public class ProductService {
 
     @Transactional
     public void fetchProducts() {
-        productRepository.findProducts(BigDecimal.valueOf(0), BigDecimal.valueOf(20))
-                .forEach(System.out::println);
+        var product = new Product();
+        product.setName("Froga");
+
+        var matcher = ExampleMatcher.matching()
+                .withIgnoreNullValues()
+                .withIgnorePaths("description", "id")
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        Example<Product> example = Example.of(product, matcher);
+        var products = productRepository.findAll(example);
+        products.forEach(System.out::println);
     }
 }
