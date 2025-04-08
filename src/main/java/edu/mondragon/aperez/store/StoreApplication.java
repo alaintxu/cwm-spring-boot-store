@@ -12,7 +12,7 @@ public class StoreApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		var productService = context.getBean(ProductService.class);
-		productService.fetchProducts();
+		productService.fetchProductsByCriteria();
 		
 	}
 

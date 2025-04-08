@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository {
     // Derived query method examples:
 
     // this will generate: select * from product where name = ?
