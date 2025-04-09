@@ -1,6 +1,7 @@
 package edu.mondragon.aperez.store.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository, JpaSpecificationExecutor<Product> {
     // Derived query method examples:
 
     // this will generate: select * from product where name = ?

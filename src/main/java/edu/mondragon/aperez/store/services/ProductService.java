@@ -3,6 +3,7 @@ package edu.mondragon.aperez.store.services;
 import java.math.BigDecimal;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import edu.mondragon.aperez.store.entities.Category;
 import edu.mondragon.aperez.store.entities.Product;
@@ -10,6 +11,7 @@ import edu.mondragon.aperez.store.entities.User;
 import edu.mondragon.aperez.store.repositories.CategoryRepository;
 import edu.mondragon.aperez.store.repositories.ProductRepository;
 import edu.mondragon.aperez.store.repositories.UserRepository;
+import edu.mondragon.aperez.store.repositories.specifications.ProductSpec;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
@@ -83,6 +85,21 @@ public class ProductService {
     @Transactional
     public void fetchProductsByCriteria() {
         var products = productRepository.findProductsByCriteria("Froga", BigDecimal.valueOf(1), BigDecimal.valueOf(10));
+        products.forEach(System.out::println);
+    }
+
+    public void fetchProductBySpecification(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+        Specification<Product> spec = Specification.where(null);
+        if (name != null && !name.isEmpty()) {
+            spec = spec.and(ProductSpec.hasName(name));
+        }
+        if (minPrice != null) {
+            spec = spec.and(ProductSpec.hasPriceGreaterThanOrEqualTo(minPrice));
+        }
+        if (maxPrice != null) {
+            spec = spec.and(ProductSpec.hasPriceLessThanOrEqualTo(maxPrice));
+        }
+        var products = productRepository.findAll(spec);
         products.forEach(System.out::println);
     }
 }
