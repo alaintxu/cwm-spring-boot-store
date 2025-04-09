@@ -3,6 +3,9 @@ package edu.mondragon.aperez.store.services;
 import java.math.BigDecimal;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import edu.mondragon.aperez.store.entities.Category;
@@ -101,5 +104,28 @@ public class ProductService {
         }
         var products = productRepository.findAll(spec);
         products.forEach(System.out::println);
+    }
+
+    public void fetchSortedProducts() {
+        var sort = Sort.by("name").and(
+            Sort.by("price").descending()
+        );
+
+        productRepository.findAll(sort).forEach(System.out::println);
+    }
+
+    public void fetchPaginatedProducts(int pageNumber, int size){
+        PageRequest pageRequest = PageRequest.of(pageNumber, size);
+        Page<Product> page = productRepository.findAll(pageRequest);
+        var products = page.getContent();
+        products.forEach(System.out::println);
+
+        var currentPageNumber = page.getNumber();
+        var totalPages = page.getTotalPages();
+        var totalElements = page.getTotalElements();
+        var numberOfElements = page.getNumberOfElements();
+        System.out.println("Page: " + currentPageNumber + "/" + totalPages);
+        System.out.println("Total elements: " + totalElements);
+        System.out.println("Number of elements: " + numberOfElements);
     }
 }
