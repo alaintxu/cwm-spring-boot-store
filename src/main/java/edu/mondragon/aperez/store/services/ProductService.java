@@ -1,6 +1,7 @@
 package edu.mondragon.aperez.store.services;
 
 import java.math.BigDecimal;
+import java.util.List;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
@@ -127,5 +128,36 @@ public class ProductService {
         System.out.println("Page: " + currentPageNumber + "/" + totalPages);
         System.out.println("Total elements: " + totalElements);
         System.out.println("Number of elements: " + numberOfElements);
+    }
+
+    public void fetchPaginatedProductsAndSortedProducts(int i, int j, List<String> sortFields) {
+        Sort sort = getSort(sortFields);
+        PageRequest pageRequest = PageRequest.of(i, j, sort);
+        Page<Product> page = productRepository.findAll(pageRequest);
+        var products = page.getContent();
+
+        products.forEach(System.out::println);
+
+        var currentPageNumber = page.getNumber();
+        var totalPages = page.getTotalPages();
+        var totalElements = page.getTotalElements();
+        var numberOfElements = page.getNumberOfElements();
+
+        System.out.println("Page: " + currentPageNumber + "/" + totalPages);
+        System.out.println("Total elements: " + totalElements);
+        System.out.println("Number of elements: " + numberOfElements);
+        System.out.println("Sort: " + page.getSort());
+    }
+
+    private Sort getSort(List<String> sortArray) {
+        Sort sort = Sort.unsorted();
+        for (String sortField : sortArray) {
+            if (sortField.startsWith("-")) {
+                sort = sort.and(Sort.by(sortField.substring(1)).descending());
+            } else {
+                sort = sort.and(Sort.by(sortField));
+            }
+        }
+        return sort;
     }
 }
